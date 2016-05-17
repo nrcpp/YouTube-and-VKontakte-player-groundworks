@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width:100%;
+            overflow: hidden;
+        }
+
+        #popupVid {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0px;
+        }
+    </style>
+
+
+    <script>
+        function sendPlayerCmd(func, args) {            
+            var div = document.getElementById("popupVid");
+            var iframe = div.getElementsByTagName("iframe")[0].contentWindow;
+            
+            iframe.postMessage('{"event":"command","func":"' + func + '","args":"' + args + '"}', '*');
+        }
+
+        function pauseVideo() { sendPlayerCmd("pauseVideo", ""); }
+        function stopVideo() { sendPlayerCmd("stopVideo", ""); }
+        function playVideo() { sendPlayerCmd("playVideo", ""); }
+
+        function setVolume(volume) { sendPlayerCmd("setVolume", volume); }        
+
+    </script>
+</head>
+<body>
+    <!-- popup and contents -->
+    <!--<div id="popupVid" style="position:absolute;left:0px;top:87px;width:500px;background-color:#D05F27;height:auto;display:none;z-index:200;">-->
+    <!--<div id="popupVid">        
+        <iframe src="http://www.youtube.com/embed/{videoId}?autoplay=1&showinfo=0&controls=0&enablejsapi=1"
+                width="400" height="300"
+                frameborder="0" allowfullscreen></iframe>
+     </div>-->
+</body>
+</html>
